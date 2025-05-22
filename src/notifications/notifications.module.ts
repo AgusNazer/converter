@@ -2,4 +2,4 @@
 import { Module } from '@nestjs/common';
 
 @Module({})
-export class UsdtModule {}
+export class NotificationsModule {}

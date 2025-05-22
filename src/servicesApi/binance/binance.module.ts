@@ -5,5 +5,6 @@ import { BinanceController } from './binance.controller';
 @Module({
   controllers: [BinanceController],
   providers: [BinanceService],
+  exports: [BinanceService]
 })
 export class BinanceModule {}

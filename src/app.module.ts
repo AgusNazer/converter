@@ -4,34 +4,37 @@ import { TasksModule } from './tasks/tasks.module';
 import { ProjectsModule } from './projects/projects.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { PaymentsModule } from './payments/payments.module';
-import { WalletModule } from './wallet/wallet.module';
-import { UsdtModule } from './usdt/usdt.module';
-import { ExchangeModule } from './exchange/exchange.module';
-import { BinanceModule } from './servicesApi/binance.module';
+import { TransactionsModule } from './transactions/Transactions.module';
+import { WalletsModule } from './wallets/Wallets.module';
+import { BinanceModule } from './servicesApi/binance/binance.module'
+import { NotificationsModule } from './notifications/notifications.module';
+import { User } from './model/user.entity';
+import { Wallet } from './model/wallet.entity';
+import { Transaction } from './model/transaction.entity';
 
 @Module({
   imports: [
     //conexion a postgreSql
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: 'localhost',
-    //   port: 5432,
-    //   username: 'postgres',//crear
-    //   password: 'tu_password',//crear
-    //   database: 'nombre_de_tu_bd',//crear
-    //   autoLoadEntities: true,
-    //   synchronize: true, // Solo en desarrollo
-    // }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'Alma2022',//crear
+      password: 'Alma2022',//crear
+      database: 'converter',//crear
+      entities: [User],
+      autoLoadEntities: true,
+      synchronize: true, // Solo en desarrollo
+    }),
+    TypeOrmModule.forFeature([User, Wallet, Transaction]),
     TasksModule,
     ProjectsModule,
     AuthModule,
     UsersModule,
-    PaymentsModule,
-    WalletModule,
-    UsdtModule,
-    ExchangeModule,
-    BinanceModule
+    TransactionsModule,
+    WalletsModule,
+    BinanceModule,
+    NotificationsModule
   ],
   // controllers: [AppController],
   // providers: [AppService],

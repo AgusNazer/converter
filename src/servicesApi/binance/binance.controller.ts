@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { BinanceService } from './binance.service';
+import { BinanceService } from '../binance/binance.service';
 
 @ApiTags('converter')
 @Controller('binance')
@@ -8,7 +8,7 @@ export class BinanceController {
   constructor(private readonly binanceService: BinanceService) {}
 
   //traer todas las cryptos (20)
-  @Get('ticker/prices')
+  @Get('/prices')
   @ApiOperation({ summary: 'Obtener precios de todas las criptomonedas' })
   @ApiResponse({ status: 200, description: 'Lista de precios de criptomonedas' })
   @ApiResponse({ status: 400, description: 'Error al consultar Binance' })
@@ -17,7 +17,7 @@ export class BinanceController {
   }
   
   // búsqueda por símbolo
-  @Get('ticker/price/:symbol')
+  @Get('/price/:symbol')
   @ApiOperation({ summary: 'Obtener precio de una criptomoneda específica, Y PONER EL PAR USDT' })
   @ApiResponse({ status: 200, description: 'Precio de la criptomoneda' })
   @ApiResponse({ status: 400, description: 'Error al consultar Binance' })
