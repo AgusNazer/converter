@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, BadRequestException } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BinanceService } from '../binance/binance.service';
 
@@ -24,4 +24,17 @@ export class BinanceController {
   async getTickerPriceBySymbol(@Param('symbol') symbol: string) {
     return this.binanceService.getTickerPriceBySymbol(symbol);
   }
+  //get convertidor 
+@Get('/convert/from/ars-to-brl/:amount')
+  async convertArsToBrl(@Param('amount') amountStr: string) {
+    const amount = parseFloat(amountStr);
+
+    // Validación: debe ser un numero positivo
+    if (isNaN(amount) || amount <= 0) {
+      throw new BadRequestException('El parámetro ":amount" debe ser un número positivo.');
+    }
+    
+    return this.binanceService.convertArsToBrl(amount);
+  }
+
 }

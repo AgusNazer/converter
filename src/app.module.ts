@@ -11,6 +11,8 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { User } from './model/user.entity';
 import { Wallet } from './model/wallet.entity';
 import { Transaction } from './model/transaction.entity';
+import { MercadoPagoModule } from './servicesApi/serviceMP/mercadoPago.module';
+
 
 @Module({
   imports: [
@@ -34,7 +36,8 @@ import { Transaction } from './model/transaction.entity';
     TransactionsModule,
     WalletsModule,
     BinanceModule,
-    NotificationsModule
+    NotificationsModule,
+    MercadoPagoModule
   ],
   // controllers: [AppController],
   // providers: [AppService],
